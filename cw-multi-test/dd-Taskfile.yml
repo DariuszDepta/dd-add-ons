@@ -12,6 +12,16 @@ tasks:
     cmds:
       - cmd: cargo +stable build
 
+  build12:
+    desc: Builds the library in debug mode
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_1_2
+
+  build13:
+    desc: Builds the library in debug mode
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_1_3
+
   build-and-test:
     desc: Circle CI equivalent of build_and_test job
     cmds:
@@ -39,12 +49,17 @@ tasks:
   clippy:
     desc: Runs clippy
     cmds:
-      - cmd: cargo +stable clippy
-
-  clippy-all:
-    desc: Runs clippy for all targets
-    cmds:
       - cmd: cargo +stable clippy --all-targets
+
+  clippy12:
+    desc: Runs clippy
+    cmds:
+      - cmd: cargo +stable clippy --all-targets --features cosmwasm_1_2
+
+  clippy13:
+    desc: Runs clippy
+    cmds:
+      - cmd: cargo +stable clippy --all-targets --features cosmwasm_1_3
 
   cov:
     desc: Runs code coverage using grcov
@@ -75,3 +90,13 @@ tasks:
     desc: Runs all tests in debug mode
     cmds:
       - cmd: cargo +stable test
+
+  test12:
+    desc: Runs all tests in debug mode
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_1_2
+
+  test13:
+    desc: Runs all tests in debug mode
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_1_3

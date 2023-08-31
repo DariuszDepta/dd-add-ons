@@ -24,7 +24,7 @@ export RUSTDOCFLAGS="-Cpanic=unwind"
 export RUSTFLAGS="-Zprofile -Ccodegen-units=1 -Copt-level=0 -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=unwind"
 
 # run all tests
-cargo +nightly-2023-06-15 test
+cargo +nightly-2023-06-15 test --all-features
 
 # prepare output directories for coverage results
 mkdir ./target/lcov
