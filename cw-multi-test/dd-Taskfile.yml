@@ -2,12 +2,34 @@ version: '3'
 
 silent: true
 
+env:
+  NIGHTLY: nightly-2023-06-15
+
 tasks:
 
   build:
     desc: Builds the library in debug mode
     cmds:
       - cmd: cargo +stable build
+
+  build-and-test:
+    desc: Circle CI equivalent of build_and_test job
+    cmds:
+      - cmd: cargo build --locked
+      - cmd: cargo test --workspace --locked
+      - cmd: cargo test --workspace --locked --features iterator
+
+  build-minimal:
+    desc: Circle CI equivalent of build_minimal job
+    cmds:
+      - cmd: cargo +$NIGHTLY build -Zminimal-versions --all-features
+      - cmd: cargo +$NIGHTLY test --workspace -Zminimal-versions --all-features
+
+  build-maximal:
+    desc: Circle CI equivalent of build_maximal job
+    cmds:
+      - cmd: cargo build --workspace --locked --all-features
+      - cmd: cargo test --workspace --locked --all-features
 
   clean:
     desc: Removes target artifacts
@@ -38,6 +60,16 @@ tasks:
     desc: Generates documentation and opens it in a browser
     cmds:
       - cmd: cargo +stable doc --no-deps --open
+
+  doc-priv:
+    desc: Generates documentation
+    cmds:
+      - cmd: cargo +stable doc --no-deps --document-private-items
+
+  doc-priv-open:
+    desc: Generates documentation
+    cmds:
+      - cmd: cargo +stable doc --no-deps --document-private-items --open
 
   test:
     desc: Runs all tests in debug mode
