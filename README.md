@@ -1,2 +1,1 @@
-# dd-add-ons
-Additional (personal) files used in cw-* projects
+# My persoanl add-ons used in CosmWasm projects
