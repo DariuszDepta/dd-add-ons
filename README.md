@@ -1,1 +1,1 @@
-# My personal add-ons used in CosmWasm projects
+# Personalisation add-ons for CosmWasm projects
