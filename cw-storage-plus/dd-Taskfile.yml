@@ -1,0 +1,40 @@
+version: '3'
+
+silent: true
+
+tasks:
+
+  build:
+    desc: Builds in debug mode
+    cmds:
+      - cmd: cargo +stable build
+
+  clean:
+    desc: Cleans target output
+    cmds:
+      - cmd: cargo clean
+
+  clippy:
+    desc: Runs clippy
+    cmds:
+      - cmd: cargo +stable clippy
+
+  clippy-all:
+    desc: Runs clippy for all targets
+    cmds:
+      - cmd: cargo +stable clippy --all-targets
+
+  doc:
+    desc: Generates documentation
+    cmds:
+      - cmd: cargo +stable doc --no-deps
+
+  doc-open:
+    desc: Generates documentation and opens it in a browser
+    cmds:
+      - cmd: cargo +stable doc --no-deps --open
+
+  test:
+    desc: Runs all tests in debug mode
+    cmds:
+      - cmd: cargo +stable test
