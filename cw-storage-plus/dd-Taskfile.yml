@@ -24,6 +24,11 @@ tasks:
     cmds:
       - cmd: cargo +stable clippy --all-targets
 
+  cov:
+    desc: Runs code coverage using grcov
+    cmds:
+      - cmd: ./coverage.sh
+
   doc:
     desc: Generates documentation
     cmds:
