@@ -2,23 +2,33 @@ version: '3'
 
 silent: true
 
-env:
-  NIGHTLY: nightly-2023-06-15
-
 tasks:
 
-  build:
-    desc: Builds the library in debug mode
+  build-all:
+    desc: Runs all build variants
     cmds:
-      - cmd: cargo +stable build
+      - task: build
+      - task: build11
+      - task: build12
+      - task: build13
+
+  build:
+    desc: Builds the library in debug mode with all features
+    cmds:
+      - cmd: cargo +stable build --all-features
+
+  build11:
+    desc: Builds the library in debug mode with "cosmwasm_1_1" feature
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_1_1
 
   build12:
-    desc: Builds the library in debug mode
+    desc: Builds the library in debug mode with "cosmwasm_1_2" feature
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_2
 
   build13:
-    desc: Builds the library in debug mode
+    desc: Builds the library in debug mode with "cosmwasm_1_3" feature
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_3
 
@@ -32,8 +42,13 @@ tasks:
   build-minimal:
     desc: Circle CI equivalent of build_minimal job
     cmds:
-      - cmd: cargo +$NIGHTLY build -Zminimal-versions --all-features
-      - cmd: cargo +$NIGHTLY test --workspace -Zminimal-versions --all-features
+      - cmd: rustup default nightly
+      - cmd: rm Cargo.lock
+      - cmd: cargo build -Zminimal-versions --all-features
+      - cmd: cargo test --workspace -Zminimal-versions --all-features
+      - cmd: rustup default stable
+      - cmd: rm Cargo.lock
+      - cmd: cargo build
 
   build-maximal:
     desc: Circle CI equivalent of build_maximal job
@@ -46,20 +61,33 @@ tasks:
     cmds:
       - cmd: cargo clean
 
-  clippy:
-    desc: Runs clippy
+  clippy-all:
+    desc: Runs all clippy variants
     cmds:
-      - cmd: cargo +stable clippy --all-targets
+      - task: clippy
+      - task: clippy11
+      - task: clippy12
+      - task: clippy13
+
+  clippy:
+    desc: Runs clippy with all features
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --all-features
+
+  clippy11:
+    desc: Runs clippy with "cosmwasm_1_1" feature
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_1
 
   clippy12:
-    desc: Runs clippy
+    desc: Runs clippy with "cosmwasm_1_2" feature
     cmds:
-      - cmd: cargo +stable clippy --all-targets --features cosmwasm_1_2
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_2
 
   clippy13:
-    desc: Runs clippy
+    desc: Runs clippy with "cosmwasm_1_3" feature
     cmds:
-      - cmd: cargo +stable clippy --all-targets --features cosmwasm_1_3
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_3
 
   cov:
     desc: Runs code coverage using grcov
@@ -86,17 +114,30 @@ tasks:
     cmds:
       - cmd: cargo +stable doc --no-deps --document-private-items --open
 
-  test:
-    desc: Runs all tests in debug mode
+  test-all:
+    desc: Runs all test variants
     cmds:
-      - cmd: cargo +stable test
+      - task: test
+      - task: test11
+      - task: test12
+      - task: test13
+
+  test:
+    desc: Runs all tests in debug mode with all features
+    cmds:
+      - cmd: cargo +stable test --all-features
+
+  test11:
+    desc: Runs all tests in debug mode with "cosmwasm_1_1" feature
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_1_1
 
   test12:
-    desc: Runs all tests in debug mode
+    desc: Runs all tests in debug mode with "cosmwasm_1_2" feature
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_2
 
   test13:
-    desc: Runs all tests in debug mode
+    desc: Runs all tests in debug mode with "cosmwasm_1_3" feature
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_3
