@@ -32,7 +32,8 @@ mkdir ./target/coverage
 
 # generate coverage info
 grcov . --llvm -s . -t lcov --ignore-not-existing \
-     --ignore "*cargo*" --ignore "*chrono-tz*" --ignore "*tests*" \
+     --excl-line='\s+\)$|\s+\}$|\s+\);$|\s+\}\)$|\s+\)\?\;$|\s+\};$|\s+\},$|\s+\)\?\)$' \
+     --ignore "*cargo*" --ignore "*tests*" \
      -o ./target/lcov/lcov.info
 
 # generate coverage report in HTML format
