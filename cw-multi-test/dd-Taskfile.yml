@@ -2,6 +2,10 @@ version: '3'
 
 silent: true
 
+vars:
+  ALL_FEATURES: backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,iterator,staking,stargate
+  ALL_FEATURES_1_0: backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,iterator,staking,stargate,multitest_api_1_0
+
 tasks:
 
   build-all:
@@ -11,11 +15,12 @@ tasks:
       - task: build11
       - task: build12
       - task: build13
+      - task: build_10
 
   build:
     desc: Builds the library in debug mode with all features
     cmds:
-      - cmd: cargo +stable build --all-features
+      - cmd: cargo +stable build --features {{.ALL_FEATURES}}
 
   build11:
     desc: Builds the library in debug mode with "cosmwasm_1_1" feature
@@ -32,6 +37,11 @@ tasks:
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_3
 
+  build_10:
+    desc: Builds the library in debug mode with multitest_api_1_0 feature enabled
+    cmds:
+      - cmd: cargo +stable build --features {{.ALL_FEATURES_1_0}}
+
   build-and-test:
     desc: Circle CI equivalent of build_and_test job
     cmds:
@@ -44,8 +54,8 @@ tasks:
     cmds:
       - cmd: rustup default nightly
       - cmd: rm Cargo.lock
-      - cmd: cargo build -Zminimal-versions --all-features
-      - cmd: cargo test --workspace -Zminimal-versions --all-features
+      - cmd: cargo build -Zminimal-versions --features {{.ALL_FEATURES}}
+      - cmd: cargo test --workspace -Zminimal-versions --features {{.ALL_FEATURES}}
       - cmd: rustup default stable
       - cmd: rm Cargo.lock
       - cmd: cargo build
@@ -53,8 +63,8 @@ tasks:
   build-maximal:
     desc: Circle CI equivalent of build_maximal job
     cmds:
-      - cmd: cargo build --workspace --locked --all-features
-      - cmd: cargo test --workspace --locked --all-features
+      - cmd: cargo build --workspace --locked --features {{.ALL_FEATURES}}
+      - cmd: cargo test --workspace --locked --features {{.ALL_FEATURES}}
 
   clean:
     desc: Removes target artifacts
@@ -68,11 +78,12 @@ tasks:
       - task: clippy11
       - task: clippy12
       - task: clippy13
+      - task: clippy_10
 
   clippy:
     desc: Runs clippy with all features
     cmds:
-      - cmd: cargo +nightly clippy --all-targets --all-features
+      - cmd: cargo +nightly clippy --all-targets --features {{.ALL_FEATURES}}
 
   clippy11:
     desc: Runs clippy with "cosmwasm_1_1" feature
@@ -89,10 +100,20 @@ tasks:
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_3
 
+  clippy_10:
+    desc: Runs clippy with all features and multitest_api_1_0 feature enabled
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features {{.ALL_FEATURES_1_0}}
+
   cov:
     desc: Runs code coverage using grcov
     cmds:
       - cmd: ./coverage.sh
+
+  tov:
+    desc: Runs code coverage using tarpaulin
+    cmds:
+      - cmd: ./tarpaulage.sh
 
   doc:
     desc: Generates documentation
@@ -121,11 +142,12 @@ tasks:
       - task: test11
       - task: test12
       - task: test13
+      - task: test_10
 
   test:
     desc: Runs all tests in debug mode with all features
     cmds:
-      - cmd: cargo +stable test --all-features
+      - cmd: cargo +stable test --features {{.ALL_FEATURES}}
 
   test11:
     desc: Runs all tests in debug mode with "cosmwasm_1_1" feature
@@ -141,3 +163,8 @@ tasks:
     desc: Runs all tests in debug mode with "cosmwasm_1_3" feature
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_3
+
+  test_10:
+    desc: Runs all tests in debug mode with all features and multitest_api_1_0 feature enabled
+    cmds:
+      - cmd: cargo +stable test --features {{.ALL_FEATURES_1_0}}
