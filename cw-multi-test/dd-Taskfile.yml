@@ -116,24 +116,44 @@ tasks:
       - cmd: ./tarpaulage.sh
 
   doc:
-    desc: Generates documentation
+    desc: Generates documentation with all features
     cmds:
-      - cmd: cargo +stable doc --no-deps
+      - cmd: cargo +stable doc --no-deps --features {{.ALL_FEATURES}}
+
+  doc_10:
+    desc: Generates documentation with all features and multitest_api_1_0 feature enabled
+    cmds:
+      - cmd: cargo +stable doc --no-deps --features {{.ALL_FEATURES_1_0}}
 
   doc-open:
-    desc: Generates documentation and opens it in a browser
+    desc: Generates documentation with all features and opens it in a browser
     cmds:
-      - cmd: cargo +stable doc --no-deps --open
+      - cmd: cargo +stable doc --no-deps --open --features {{.ALL_FEATURES}}
+
+  doc-open_10:
+    desc: Generates documentation with all features and multitest_api_1_0 feature enabled and opens it in a browser
+    cmds:
+      - cmd: cargo +stable doc --no-deps --open --features {{.ALL_FEATURES_1_0}}
 
   doc-priv:
-    desc: Generates documentation
+    desc: Generates documentation with private items and all features
     cmds:
-      - cmd: cargo +stable doc --no-deps --document-private-items
+      - cmd: cargo +stable doc --no-deps --document-private-items --features {{.ALL_FEATURES}}
+
+  doc-priv_10:
+    desc: Generates documentation with private items and all features and multitest_api_1_0 feature enabled
+    cmds:
+      - cmd: cargo +stable doc --no-deps --document-private-items --features {{.ALL_FEATURES_1_0}}
 
   doc-priv-open:
-    desc: Generates documentation
+    desc: Generates documentation with private items and all features and opens it in a browser
     cmds:
-      - cmd: cargo +stable doc --no-deps --document-private-items --open
+      - cmd: cargo +stable doc --no-deps --document-private-items --open --features {{.ALL_FEATURES}}
+
+  doc-priv-open_10:
+    desc: Generates documentation with private items and all features and multitest_api_1_0 feature enabled and opens it in a browser
+    cmds:
+      - cmd: cargo +stable doc --no-deps --document-private-items --open --features {{.ALL_FEATURES_1_0}}
 
   test-all:
     desc: Runs all test variants
