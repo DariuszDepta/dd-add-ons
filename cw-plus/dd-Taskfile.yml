@@ -1,0 +1,10 @@
+version: '3'
+
+silent: true
+
+tasks:
+
+  tov:
+    desc: Runs code coverage using tarpaulin
+    cmds:
+      - cmd: ./tarpaulage.sh
