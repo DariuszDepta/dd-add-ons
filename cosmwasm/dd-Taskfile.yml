@@ -1,0 +1,50 @@
+version: '3'
+
+silent: true
+
+tasks:
+
+  build:
+    desc: Builds all
+    cmds:
+      - cmd: cargo +stable build --workspace --features cosmwasm_1_4
+
+  clean:
+    desc: Cleans everything
+    cmds:
+      - cmd: cargo clean
+
+  clippy:
+    desc: Runs clippy
+    cmds:
+      - cmd: cargo +nightly clippy --workspace --all-targets -- -D warnings
+
+  cov:
+    desc: Runs code coverage using grcov
+    cmds:
+      - cmd: ./coverage.sh
+
+  doc:
+    desc: Generates documentation
+    cmds:
+      - cmd: cargo +stable doc --no-deps --workspace --features cosmwasm_1_4
+
+  doc-open:
+    desc: Generates documentation and opens it in a browser
+    cmds:
+      - cmd: cargo +stable doc --no-deps --open --workspace --features cosmwasm_1_4
+
+  tov:
+    desc: Runs code coverage using tarpaulin
+    cmds:
+      - cmd: ./tarpaulage.sh
+
+  test:
+    desc: Runs all tests
+    cmds:
+      - cmd: cargo +stable test --workspace --features cosmwasm_1_4
+
+  testn:
+    desc: Runs all tests
+    cmds:
+      - cmd: cargo +stable nextest run --workspace --features cosmwasm_1_4

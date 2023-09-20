@@ -3,7 +3,7 @@ version: '3'
 silent: true
 
 vars:
-  ALL_FEATURES: backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,iterator,staking,stargate
+  ALL_FEATURES: backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,cosmwasm_1_4,iterator,staking,stargate
   ALL_FEATURES_1_0: backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,iterator,staking,stargate,multitest_api_1_0
 
 tasks:
@@ -15,6 +15,7 @@ tasks:
       - task: build11
       - task: build12
       - task: build13
+      - task: build14
       - task: build_10
 
   build:
@@ -36,6 +37,11 @@ tasks:
     desc: Builds the library in debug mode with "cosmwasm_1_3" feature
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_3
+
+  build14:
+    desc: Builds the library in debug mode with "cosmwasm_1_4" feature
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_1_4
 
   build_10:
     desc: Builds the library in debug mode with multitest_api_1_0 feature enabled
@@ -78,6 +84,7 @@ tasks:
       - task: clippy11
       - task: clippy12
       - task: clippy13
+      - task: clippy14
       - task: clippy_10
 
   clippy:
@@ -99,6 +106,11 @@ tasks:
     desc: Runs clippy with "cosmwasm_1_3" feature
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_3
+
+  clippy14:
+    desc: Runs clippy with "cosmwasm_1_4" feature
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_4
 
   clippy_10:
     desc: Runs clippy with all features and multitest_api_1_0 feature enabled
@@ -162,6 +174,7 @@ tasks:
       - task: test11
       - task: test12
       - task: test13
+      - task: test14
       - task: test_10
 
   test:
@@ -177,12 +190,17 @@ tasks:
   test12:
     desc: Runs all tests in debug mode with "cosmwasm_1_2" feature
     cmds:
-      - cmd: cargo +stable test --features cosmwasm_1_2
+      - cmd: cargo +stable test --features cosmwasm_1_2 -- --nocapture
 
   test13:
     desc: Runs all tests in debug mode with "cosmwasm_1_3" feature
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_3
+
+  test14:
+    desc: Runs all tests in debug mode with "cosmwasm_1_4" feature
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_1_4
 
   test_10:
     desc: Runs all tests in debug mode with all features and multitest_api_1_0 feature enabled
