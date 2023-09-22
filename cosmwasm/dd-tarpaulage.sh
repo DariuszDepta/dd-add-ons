@@ -7,4 +7,4 @@
 #
 ###############################################################################
 
-cargo tarpaulin --workspace --features cosmwasm_1_4 --force-clean --out Html --engine llvm --output-dir ./target/tov
+cargo tarpaulin --workspace --features cosmwasm_1_4 --force-clean --out html --engine llvm --output-dir ./target/tov
