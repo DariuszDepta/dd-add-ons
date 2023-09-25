@@ -58,13 +58,12 @@ tasks:
   build-minimal:
     desc: Circle CI equivalent of build_minimal job
     cmds:
-      - cmd: rustup default nightly
       - cmd: rm Cargo.lock
-      - cmd: cargo build -Zminimal-versions --features {{.ALL_FEATURES}}
-      - cmd: cargo test --workspace -Zminimal-versions --features {{.ALL_FEATURES}}
-      - cmd: rustup default stable
+      - cmd: cargo +nightly build -Zminimal-versions --features {{.ALL_FEATURES}}
       - cmd: rm Cargo.lock
-      - cmd: cargo build
+      - cmd: cargo +nightly test --workspace -Zminimal-versions --features {{.ALL_FEATURES}}
+      - cmd: rm Cargo.lock
+      - cmd: cargo +stable build
 
   build-maximal:
     desc: Circle CI equivalent of build_maximal job
