@@ -54,6 +54,11 @@ tasks:
     cmds:
       - cmd: cargo +stable test --workspace --features cosmwasm_1_4
 
+  test-nightly:
+    desc: Runs all tests
+    cmds:
+      - cmd: cargo +nightly test --workspace --features cosmwasm_1_4
+
   test-ci:
     desc: Runs all tests
     cmds:

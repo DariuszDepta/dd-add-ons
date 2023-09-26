@@ -20,7 +20,7 @@ cargo clean
 # set instrumenting variables
 export CARGO_INCREMENTAL=0
 export RUSTDOCFLAGS="-Cpanic=unwind"
-export RUSTFLAGS="-Zprofile -Ccodegen-units=1 -Copt-level=0 -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=unwind"
+export RUSTFLAGS="-Zprofile -Ccodegen-units=1 -Copt-level=0 -Zpanic_abort_tests -Cpanic=unwind"
 
 # run all tests
 cargo +nightly test --features cosmwasm_1_4
