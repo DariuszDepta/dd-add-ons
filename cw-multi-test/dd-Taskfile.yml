@@ -2,10 +2,6 @@ version: '3'
 
 silent: true
 
-vars:
-  ALL_FEATURES: backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,cosmwasm_1_4,iterator,staking,stargate
-  ALL_FEATURES_1_0: backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,iterator,staking,stargate,multitest_api_1_0
-
 tasks:
 
   build-all:
@@ -16,12 +12,11 @@ tasks:
       - task: build12
       - task: build13
       - task: build14
-      - task: build_10
 
   build:
     desc: Builds the library in debug mode with all features
     cmds:
-      - cmd: cargo +stable build --features {{.ALL_FEATURES}}
+      - cmd: cargo +stable build --all-features
 
   build11:
     desc: Builds the library in debug mode with "cosmwasm_1_1" feature
@@ -43,11 +38,6 @@ tasks:
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_4
 
-  build_10:
-    desc: Builds the library in debug mode with multitest_api_1_0 feature enabled
-    cmds:
-      - cmd: cargo +stable build --features {{.ALL_FEATURES_1_0}}
-
   build-and-test:
     desc: Circle CI equivalent of build_and_test job
     cmds:
@@ -59,17 +49,17 @@ tasks:
     desc: Circle CI equivalent of build_minimal job
     cmds:
       - cmd: rm Cargo.lock
-      - cmd: cargo +nightly build -Zminimal-versions --features {{.ALL_FEATURES}}
+      - cmd: cargo +nightly build -Zminimal-versions --all-features
       - cmd: rm Cargo.lock
-      - cmd: cargo +nightly test --workspace -Zminimal-versions --features {{.ALL_FEATURES}}
+      - cmd: cargo +nightly test --workspace -Zminimal-versions --all-features
       - cmd: rm Cargo.lock
       - cmd: cargo +stable build
 
   build-maximal:
     desc: Circle CI equivalent of build_maximal job
     cmds:
-      - cmd: cargo build --workspace --locked --features {{.ALL_FEATURES}}
-      - cmd: cargo test --workspace --locked --features {{.ALL_FEATURES}}
+      - cmd: cargo build --workspace --locked --all-features
+      - cmd: cargo test --workspace --locked --all-features
 
   clean:
     desc: Removes target artifacts
@@ -84,12 +74,11 @@ tasks:
       - task: clippy12
       - task: clippy13
       - task: clippy14
-      - task: clippy_10
 
   clippy:
     desc: Runs clippy with all features
     cmds:
-      - cmd: cargo +nightly clippy --all-targets --features {{.ALL_FEATURES}}
+      - cmd: cargo +nightly clippy --all-targets --all-features -- -D warnings
 
   clippy11:
     desc: Runs clippy with "cosmwasm_1_1" feature
@@ -111,11 +100,6 @@ tasks:
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_4
 
-  clippy_10:
-    desc: Runs clippy with all features and multitest_api_1_0 feature enabled
-    cmds:
-      - cmd: cargo +nightly clippy --all-targets --features {{.ALL_FEATURES_1_0}}
-
   cov:
     desc: Runs code coverage using grcov
     cmds:
@@ -129,42 +113,22 @@ tasks:
   doc:
     desc: Generates documentation with all features
     cmds:
-      - cmd: cargo +stable doc --no-deps --features {{.ALL_FEATURES}}
-
-  doc_10:
-    desc: Generates documentation with all features and multitest_api_1_0 feature enabled
-    cmds:
-      - cmd: cargo +stable doc --no-deps --features {{.ALL_FEATURES_1_0}}
+      - cmd: cargo +stable doc --no-deps --all-features
 
   doc-open:
     desc: Generates documentation with all features and opens it in a browser
     cmds:
-      - cmd: cargo +stable doc --no-deps --open --features {{.ALL_FEATURES}}
-
-  doc-open_10:
-    desc: Generates documentation with all features and multitest_api_1_0 feature enabled and opens it in a browser
-    cmds:
-      - cmd: cargo +stable doc --no-deps --open --features {{.ALL_FEATURES_1_0}}
+      - cmd: cargo +stable doc --no-deps --open --all-features
 
   doc-priv:
     desc: Generates documentation with private items and all features
     cmds:
-      - cmd: cargo +stable doc --no-deps --document-private-items --features {{.ALL_FEATURES}}
-
-  doc-priv_10:
-    desc: Generates documentation with private items and all features and multitest_api_1_0 feature enabled
-    cmds:
-      - cmd: cargo +stable doc --no-deps --document-private-items --features {{.ALL_FEATURES_1_0}}
+      - cmd: cargo +stable doc --no-deps --document-private-items --all-features
 
   doc-priv-open:
     desc: Generates documentation with private items and all features and opens it in a browser
     cmds:
-      - cmd: cargo +stable doc --no-deps --document-private-items --open --features {{.ALL_FEATURES}}
-
-  doc-priv-open_10:
-    desc: Generates documentation with private items and all features and multitest_api_1_0 feature enabled and opens it in a browser
-    cmds:
-      - cmd: cargo +stable doc --no-deps --document-private-items --open --features {{.ALL_FEATURES_1_0}}
+      - cmd: cargo +stable doc --no-deps --document-private-items --open --all-features
 
   test-all:
     desc: Runs all test variants
@@ -174,12 +138,11 @@ tasks:
       - task: test12
       - task: test13
       - task: test14
-      - task: test_10
 
   test:
     desc: Runs all tests in debug mode with all features
     cmds:
-      - cmd: cargo +stable test --features {{.ALL_FEATURES}}
+      - cmd: cargo +stable test --all-features
 
   test11:
     desc: Runs all tests in debug mode with "cosmwasm_1_1" feature
@@ -200,8 +163,3 @@ tasks:
     desc: Runs all tests in debug mode with "cosmwasm_1_4" feature
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_4
-
-  test_10:
-    desc: Runs all tests in debug mode with all features and multitest_api_1_0 feature enabled
-    cmds:
-      - cmd: cargo +stable test --features {{.ALL_FEATURES_1_0}}
