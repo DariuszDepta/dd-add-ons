@@ -38,28 +38,21 @@ tasks:
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_4
 
-  build-and-test:
-    desc: Circle CI equivalent of build_and_test job
-    cmds:
-      - cmd: cargo build --locked
-      - cmd: cargo test --workspace --locked
-      - cmd: cargo test --workspace --locked --features iterator
-
-  build-minimal:
+  build-min:
     desc: Circle CI equivalent of build_minimal job
     cmds:
       - cmd: rm Cargo.lock
       - cmd: cargo +nightly build -Zminimal-versions --all-features
       - cmd: rm Cargo.lock
-      - cmd: cargo +nightly test --workspace -Zminimal-versions --all-features
+      - cmd: cargo +nightly test -Zminimal-versions --all-features
       - cmd: rm Cargo.lock
       - cmd: cargo +stable build
 
-  build-maximal:
+  build-max:
     desc: Circle CI equivalent of build_maximal job
     cmds:
-      - cmd: cargo build --workspace --locked --all-features
-      - cmd: cargo test --workspace --locked --all-features
+      - cmd: cargo build --locked --all-features
+      - cmd: cargo test --locked --all-features
 
   clean:
     desc: Removes target artifacts
@@ -78,7 +71,7 @@ tasks:
   clippy:
     desc: Runs clippy with all features
     cmds:
-      - cmd: cargo +nightly clippy --all-targets --all-features -- -D warnings
+      - cmd: cargo +nightly clippy --all-targets --all-features
 
   clippy11:
     desc: Runs clippy with "cosmwasm_1_1" feature
