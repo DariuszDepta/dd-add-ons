@@ -34,10 +34,22 @@ tasks:
     cmds:
       - cmd: cargo clean
 
+  clippy-all:
+    desc: Runs clippy
+    cmds:
+      - task: clippy
+      - task: clippy-stable
+      - task: clippy-ci
+
   clippy:
     desc: Runs clippy
     cmds:
       - cmd: cargo +nightly clippy --workspace --all-targets -- -D warnings
+
+  clippy-stable:
+    desc: Runs clippy
+    cmds:
+      - cmd: cargo +stable clippy --workspace --all-targets -- -D warnings
 
   clippy-ci:
     desc: Runs clippy
