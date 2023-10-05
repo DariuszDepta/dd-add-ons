@@ -43,7 +43,4 @@ genhtml -t "$CARGO_NAME v$CARGO_VERSION" -q -o ./target/coverage ./target/lcov/l
 echo ""
 echo "Open coverage report:"
 echo "  HTML file://$WORKING_DIRECTORY/target/coverage/index.html"
-if [ "$PDF_REPORT" != "" ]; then
-  echo "   PDF file://$WORKING_DIRECTORY/target/coverage/coverage.pdf"
-fi
 echo ""

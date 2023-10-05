@@ -14,6 +14,21 @@ tasks:
     cmds:
       - cmd: cargo +1.67.0-x86_64-unknown-linux-gnu build --workspace --features cosmwasm_1_4
 
+  build-contracts:
+    desc: Builds all contracts
+    cmds:
+      - cmd: cd contracts/burner && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/crypto-verify && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/cyberpunk && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/floaty && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/hackatom && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/ibc-reflect && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/ibc-reflect-send && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/queue && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/reflect && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/staking && cargo build && cargo clean && cd ../../
+      - cmd: cd contracts/virus && cargo build && cargo clean && cd ../../
+
   clean:
     desc: Cleans everything
     cmds:

@@ -67,11 +67,17 @@ tasks:
       - task: clippy12
       - task: clippy13
       - task: clippy14
+      - task: clippy-rust-1-65
 
   clippy:
     desc: Runs clippy with all features
     cmds:
       - cmd: cargo +nightly clippy --all-targets --all-features
+
+  clippy-rust-1-65:
+    desc: Runs clippy with all features and Rust version 1.65.0
+    cmds:
+      - cmd: cargo +1.65.0-x86_64-unknown-linux-gnu clippy --all-targets --all-features
 
   clippy11:
     desc: Runs clippy with "cosmwasm_1_1" feature
