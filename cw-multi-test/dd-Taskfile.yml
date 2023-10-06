@@ -129,6 +129,11 @@ tasks:
     cmds:
       - cmd: cargo +stable doc --no-deps --document-private-items --open --all-features
 
+  fmt:
+    desc: Formats the code
+    cmds:
+      - cmd: cargo fmt
+
   test-all:
     desc: Runs all test variants
     cmds:

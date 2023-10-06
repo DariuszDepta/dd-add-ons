@@ -12,7 +12,8 @@ tasks:
   build-ci:
     desc: Builds all
     cmds:
-      - cmd: cargo +1.67.0-x86_64-unknown-linux-gnu build --workspace --features cosmwasm_1_4
+      - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu build --workspace --features cosmwasm_1_4
+      - cmd: cargo +1.72.0-x86_64-unknown-linux-gnu build --workspace --features cosmwasm_1_4
 
   build-contracts:
     desc: Builds all contracts
@@ -54,7 +55,8 @@ tasks:
   clippy-ci:
     desc: Runs clippy
     cmds:
-      - cmd: cargo +1.67.0-x86_64-unknown-linux-gnu clippy --workspace --all-targets -- -D warnings
+      - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu clippy --workspace --all-targets -- -D warnings
+      - cmd: cargo +1.72.0-x86_64-unknown-linux-gnu clippy --workspace --all-targets -- -D warnings
 
   cov:
     desc: Runs code coverage using grcov
@@ -89,7 +91,8 @@ tasks:
   test-ci:
     desc: Runs all tests
     cmds:
-      - cmd: cargo +1.67.0-x86_64-unknown-linux-gnu test --workspace --features cosmwasm_1_4
+      - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu test --workspace --features cosmwasm_1_4
+      - cmd: cargo +1.72.0-x86_64-unknown-linux-gnu test --workspace --features cosmwasm_1_4
 
   testn:
     desc: Runs all tests
