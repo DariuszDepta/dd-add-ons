@@ -68,6 +68,17 @@ tasks:
     cmds:
       - cmd: cargo +stable doc --no-deps --workspace --features cosmwasm_1_4
 
+  doc-priv:
+    desc: Generates documentation
+    cmds:
+      - cmd: cargo +stable doc --no-deps --document-private-items --workspace --features cosmwasm_1_4
+
+  doc-ci:
+    desc: Generates documentation
+    cmds:
+      - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu doc --no-deps --workspace --features cosmwasm_1_4
+      - cmd: cargo +1.72.0-x86_64-unknown-linux-gnu doc --no-deps --workspace --features cosmwasm_1_4
+
   doc-open:
     desc: Generates documentation and opens it in a browser
     cmds:
@@ -88,6 +99,21 @@ tasks:
     cmds:
       - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu test --workspace --features cosmwasm_1_4
       - cmd: cargo +1.72.0-x86_64-unknown-linux-gnu test --workspace --features cosmwasm_1_4
+
+  test-contracts:
+    desc: Builds all contracts
+    cmds:
+      #- cmd: cd contracts/burner && cargo wasm && cargo test && cargo clean && cd ../../
+      #- cmd: cd contracts/crypto-verify && cargo wasm && cargo test && cargo clean && cd ../../
+#      - cmd: cd contracts/cyberpunk && cargo test && cargo clean && cd ../../
+#      - cmd: cd contracts/floaty && cargo test && cargo clean && cd ../../
+      - cmd: cd contracts/hackatom && cargo wasm && cargo test && cargo clean && cd ../../
+#      - cmd: cd contracts/ibc-reflect && cargo test && cargo clean && cd ../../
+#      - cmd: cd contracts/ibc-reflect-send && cargo test && cargo clean && cd ../../
+#      - cmd: cd contracts/queue && cargo test && cargo clean && cd ../../
+#      - cmd: cd contracts/reflect && cargo test && cargo clean && cd ../../
+#      - cmd: cd contracts/staking && cargo test && cargo clean && cd ../../
+#      - cmd: cd contracts/virus && cargo test && cargo clean && cd ../../
 
   testn:
     desc: Runs all tests
