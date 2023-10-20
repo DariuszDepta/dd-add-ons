@@ -1,0 +1,15 @@
+version: '3'
+
+silent: true
+
+tasks:
+
+  build:
+    desc: Builds the book
+    cmds:
+      - cmd: mdbook build
+
+  serve:
+    desc: Serves the book locally
+    cmds:
+      - cmd: mdbook serve
