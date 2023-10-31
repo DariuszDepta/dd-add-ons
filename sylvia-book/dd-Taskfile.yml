@@ -9,6 +9,11 @@ tasks:
     cmds:
       - cmd: mdbook build
 
+  clean:
+    desc: Deletes a built book
+    cmds:
+      - cmd: mdbook clean
+
   serve:
     desc: Serves the book locally
     cmds:
