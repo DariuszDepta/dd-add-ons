@@ -13,6 +13,8 @@ tasks:
       - task: build12
       - task: build13
       - task: build14
+      - task: build-min
+      - task: build-max
 
   build:
     desc: Builds the library in debug mode with all features
