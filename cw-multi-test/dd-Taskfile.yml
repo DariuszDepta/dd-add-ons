@@ -8,6 +8,7 @@ tasks:
     desc: Runs all build variants
     cmds:
       - task: build
+      - task: build10
       - task: build11
       - task: build12
       - task: build13
@@ -18,23 +19,28 @@ tasks:
     cmds:
       - cmd: cargo +stable build --all-features
 
+  build10:
+    desc: Builds the library in debug mode with default features
+    cmds:
+      - cmd: cargo +stable build
+
   build11:
-    desc: Builds the library in debug mode with "cosmwasm_1_1" feature
+    desc: Builds the library in debug mode with "cosmwasm_1_1" feature enabled
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_1
 
   build12:
-    desc: Builds the library in debug mode with "cosmwasm_1_2" feature
+    desc: Builds the library in debug mode with "cosmwasm_1_2" feature enabled
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_2
 
   build13:
-    desc: Builds the library in debug mode with "cosmwasm_1_3" feature
+    desc: Builds the library in debug mode with "cosmwasm_1_3" feature enabled
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_3
 
   build14:
-    desc: Builds the library in debug mode with "cosmwasm_1_4" feature
+    desc: Builds the library in debug mode with "cosmwasm_1_4" feature enabled
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_4
 
@@ -63,6 +69,7 @@ tasks:
     desc: Runs all clippy variants
     cmds:
       - task: clippy
+      - task: clippy10
       - task: clippy11
       - task: clippy12
       - task: clippy13
@@ -79,23 +86,28 @@ tasks:
     cmds:
       - cmd: cargo +1.65.0-x86_64-unknown-linux-gnu clippy --all-targets --all-features
 
+  clippy10:
+    desc: Runs clippy with default features
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets
+
   clippy11:
-    desc: Runs clippy with "cosmwasm_1_1" feature
+    desc: Runs clippy with "cosmwasm_1_1" feature enabled
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_1
 
   clippy12:
-    desc: Runs clippy with "cosmwasm_1_2" feature
+    desc: Runs clippy with "cosmwasm_1_2" feature enabled
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_2
 
   clippy13:
-    desc: Runs clippy with "cosmwasm_1_3" feature
+    desc: Runs clippy with "cosmwasm_1_3" feature enabled
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_3
 
   clippy14:
-    desc: Runs clippy with "cosmwasm_1_4" feature
+    desc: Runs clippy with "cosmwasm_1_4" feature enabled
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_4
 
@@ -138,6 +150,7 @@ tasks:
     desc: Runs all test variants
     cmds:
       - task: test
+      - task: test10
       - task: test11
       - task: test12
       - task: test13
@@ -148,22 +161,27 @@ tasks:
     cmds:
       - cmd: cargo +stable test --all-features
 
+  test10:
+    desc: Runs all tests in debug mode with default features
+    cmds:
+      - cmd: cargo +stable test
+
   test11:
-    desc: Runs all tests in debug mode with "cosmwasm_1_1" feature
+    desc: Runs all tests in debug mode with "cosmwasm_1_1" feature enabled
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_1
 
   test12:
-    desc: Runs all tests in debug mode with "cosmwasm_1_2" feature
+    desc: Runs all tests in debug mode with "cosmwasm_1_2" feature enabled
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_2 -- --nocapture
 
   test13:
-    desc: Runs all tests in debug mode with "cosmwasm_1_3" feature
+    desc: Runs all tests in debug mode with "cosmwasm_1_3" feature enabled
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_3
 
   test14:
-    desc: Runs all tests in debug mode with "cosmwasm_1_4" feature
+    desc: Runs all tests in debug mode with "cosmwasm_1_4" feature enabled
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_4
