@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 ###############################################################################
+#
 # Dependencies:
 #
 # $ cargo install cargo-tarpaulin
@@ -9,7 +10,7 @@
 
 WORKING_DIRECTORY=$(pwd)
 
-cargo tarpaulin --workspace --features backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,iterator,staking,stargate --force-clean --out Html --engine llvm --output-dir "$WORKING_DIRECTORY/target/tov"
+cargo tarpaulin --features backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3 --force-clean --out Html --engine llvm --output-dir "$WORKING_DIRECTORY/target/tov"
 
 # display final message
 echo ""

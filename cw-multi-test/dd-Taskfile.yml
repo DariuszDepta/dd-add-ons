@@ -4,6 +4,13 @@ silent: true
 
 tasks:
 
+  before-commit:
+    desc: Run this before committing changes
+    cmds:
+      - cmd: cargo clean
+      - cmd: rm Cargo.lock
+      - cmd: cargo +stable build
+
   build-all:
     desc: Runs all build variants
     cmds:
@@ -187,10 +194,3 @@ tasks:
     desc: Runs all tests in debug mode with "cosmwasm_1_4" feature enabled
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_4
-
-  before-commit:
-    desc: Run this before committing changes
-    cmds:
-      - cmd: cargo clean
-      - cmd: rm Cargo.lock
-      - cmd: cargo +stable build
