@@ -59,15 +59,12 @@ tasks:
       - cmd: rm Cargo.lock
       - cmd: cargo +nightly build -Zminimal-versions --all-features
       - cmd: rm Cargo.lock
-      - cmd: cargo +nightly test -Zminimal-versions --all-features
-      - cmd: rm Cargo.lock
       - cmd: cargo +stable build
 
   build-max:
     desc: Circle CI equivalent of build_maximal job
     cmds:
       - cmd: cargo build --locked --all-features
-      - cmd: cargo test --locked --all-features
 
   clean:
     desc: Removes target artifacts
@@ -164,6 +161,8 @@ tasks:
       - task: test12
       - task: test13
       - task: test14
+      - task: test-min
+      - task: test-max
 
   test:
     desc: Runs all tests in debug mode with all features
@@ -194,3 +193,16 @@ tasks:
     desc: Runs all tests in debug mode with "cosmwasm_1_4" feature enabled
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_4
+
+  test-min:
+    desc: Runs tests with minimal version
+    cmds:
+      - cmd: rm Cargo.lock
+      - cmd: cargo +nightly test -Zminimal-versions --all-features
+      - cmd: rm Cargo.lock
+      - cmd: cargo +stable test
+
+  test-max:
+    desc: Runs tests with maximal versions
+    cmds:
+      - cmd: cargo test --locked --all-features
