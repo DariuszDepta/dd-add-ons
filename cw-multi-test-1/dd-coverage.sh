@@ -37,7 +37,7 @@ grcov . --llvm -s . -t lcov --ignore-not-existing \
      -o ./target/lcov/lcov.info
 
 # generate coverage report in HTML format
-genhtml -t "$CARGO_NAME v$CARGO_VERSION" -q -o ./target/coverage ./target/lcov/lcov.info
+genhtml -t "$CARGO_NAME v$CARGO_VERSION" -q --ignore-errors unmapped,unmapped -o ./target/coverage ./target/lcov/lcov.info
 
 # display final message
 echo ""

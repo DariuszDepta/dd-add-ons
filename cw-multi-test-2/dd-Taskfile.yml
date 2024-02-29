@@ -5,56 +5,32 @@ silent: true
 tasks:
 
   before-commit:
-    desc: Run this before committing changes
+    desc: Run this before committing any changes
     cmds:
       - cmd: cargo clean
       - cmd: rm Cargo.lock
       - cmd: cargo +stable build
 
-  build-all:
+  build:
     desc: Runs all build variants
     cmds:
-      - task: build
-      - task: build10
-      - task: build11
-      - task: build12
-      - task: build13
-      - task: build14
+      - task: build-all
+      - task: build-default
       - task: build-min
       - task: build-max
 
-  build:
-    desc: Builds the library in debug mode with all features
+  build-all:
+    desc: Builds in debug mode with all features enabled
     cmds:
       - cmd: cargo +stable build --all-features
 
-  build10:
-    desc: Builds the library in debug mode with default features
+  build-default:
+    desc: Builds in debug mode with default features enabled
     cmds:
       - cmd: cargo +stable build
 
-  build11:
-    desc: Builds the library in debug mode with "cosmwasm_1_1" feature enabled
-    cmds:
-      - cmd: cargo +stable build --features cosmwasm_1_1
-
-  build12:
-    desc: Builds the library in debug mode with "cosmwasm_1_2" feature enabled
-    cmds:
-      - cmd: cargo +stable build --features cosmwasm_1_2
-
-  build13:
-    desc: Builds the library in debug mode with "cosmwasm_1_3" feature enabled
-    cmds:
-      - cmd: cargo +stable build --features cosmwasm_1_3
-
-  build14:
-    desc: Builds the library in debug mode with "cosmwasm_1_4" feature enabled
-    cmds:
-      - cmd: cargo +stable build --features cosmwasm_1_4
-
   build-min:
-    desc: Circle CI equivalent of build_minimal job
+    desc: Equivalent of the build_minimal job in Circle CI
     cmds:
       - cmd: rm Cargo.lock
       - cmd: cargo +nightly build -Zminimal-versions --all-features
@@ -62,12 +38,12 @@ tasks:
       - cmd: cargo +stable build
 
   build-max:
-    desc: Circle CI equivalent of build_maximal job
+    desc: Equivalent of the build_maximal job in Circle CI
     cmds:
       - cmd: cargo build --locked --all-features
 
   clean:
-    desc: Removes target artifacts
+    desc: Removes all target artifacts
     cmds:
       - cmd: cargo clean
 
@@ -86,6 +62,11 @@ tasks:
     desc: Runs clippy with all features
     cmds:
       - cmd: cargo +nightly clippy --all-targets --all-features
+
+  clippy-v2:
+    desc: Runs clippy with all features for version 2.*
+    cmds:
+      - cmd: cargo clippy --all-targets
 
   clippy-rust-1-65:
     desc: Runs clippy with all features and Rust version 1.65.0
@@ -168,6 +149,11 @@ tasks:
     desc: Runs all tests in debug mode with all features
     cmds:
       - cmd: cargo +stable test --all-features
+
+  test-v2:
+    desc: Runs all tests in debug mode version 2.*
+    cmds:
+      - cmd: cargo +stable test
 
   test10:
     desc: Runs all tests in debug mode with default features
