@@ -11,11 +11,11 @@ tasks:
       - cmd: rm Cargo.lock
       - cmd: cargo +stable build
 
-  build-all:
+  build:
     desc: Runs all build variants
     cmds:
-      - task: build
-      - task: build10
+      - task: build-all
+      - task: build-default
       - task: build11
       - task: build12
       - task: build13
@@ -23,18 +23,13 @@ tasks:
       - task: build-min
       - task: build-max
 
-  build:
-    desc: Builds the library in debug mode with all features
+  build-all:
+    desc: Builds the library in debug mode with all features enabled
     cmds:
       - cmd: cargo +stable build --all-features
 
-  build-v2:
-    desc: Builds the library in debug mode version 2.*
-    cmds:
-      - cmd: cargo +stable build
-
-  build10:
-    desc: Builds the library in debug mode with default features
+  build-default:
+    desc: Builds the library in debug mode with default features enabled
     cmds:
       - cmd: cargo +stable build
 
@@ -76,34 +71,24 @@ tasks:
     cmds:
       - cmd: cargo clean
 
-  clippy-all:
+  clippy:
     desc: Runs all clippy variants
     cmds:
-      - task: clippy
-      - task: clippy10
+      - task: clippy-all
+      - task: clippy-default
       - task: clippy11
       - task: clippy12
       - task: clippy13
       - task: clippy14
       - task: clippy-rust-1-65
 
-  clippy:
-    desc: Runs clippy with all features
+  clippy-all:
+    desc: Runs clippy with all features enabled
     cmds:
       - cmd: cargo +nightly clippy --all-targets --all-features
 
-  clippy-v2:
-    desc: Runs clippy with all features for version 2.*
-    cmds:
-      - cmd: cargo clippy --all-targets
-
-  clippy-rust-1-65:
-    desc: Runs clippy with all features and Rust version 1.65.0
-    cmds:
-      - cmd: cargo +1.65.0-x86_64-unknown-linux-gnu clippy --all-targets --all-features
-
-  clippy10:
-    desc: Runs clippy with default features
+  clippy-default:
+    desc: Runs clippy with default features enabled
     cmds:
       - cmd: cargo +nightly clippy --all-targets
 
@@ -126,6 +111,11 @@ tasks:
     desc: Runs clippy with "cosmwasm_1_4" feature enabled
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_4
+
+  clippy-rust-1-65:
+    desc: Runs clippy with all features and Rust version 1.65.0
+    cmds:
+      - cmd: cargo +1.65.0-x86_64-unknown-linux-gnu clippy --all-targets --all-features
 
   cov:
     desc: Runs code coverage using grcov
@@ -162,11 +152,11 @@ tasks:
     cmds:
       - cmd: cargo fmt
 
-  test-all:
+  test:
     desc: Runs all test variants
     cmds:
-      - task: test
-      - task: test10
+      - task: test-all
+      - task: test-default
       - task: test11
       - task: test12
       - task: test13
@@ -174,18 +164,13 @@ tasks:
       - task: test-min
       - task: test-max
 
-  test:
-    desc: Runs all tests in debug mode with all features
+  test-all:
+    desc: Runs all tests in debug mode with all features enabled
     cmds:
       - cmd: cargo +stable test --all-features
 
-  test-v2:
-    desc: Runs all tests in debug mode version 2.*
-    cmds:
-      - cmd: cargo +stable test
-
-  test10:
-    desc: Runs all tests in debug mode with default features
+  test-default:
+    desc: Runs all tests in debug mode with default features enabled
     cmds:
       - cmd: cargo +stable test
 
