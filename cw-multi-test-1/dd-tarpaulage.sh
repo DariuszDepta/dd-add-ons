@@ -10,7 +10,7 @@
 
 WORKING_DIRECTORY=$(pwd)
 
-cargo tarpaulin --all-features --force-clean --out Html --engine llvm --output-dir "$WORKING_DIRECTORY/target/tov"
+cargo +1.74.0-x86_64-unknown-linux-gnu tarpaulin --workspace --features backtrace,cosmwasm_1_1,cosmwasm_1_2,cosmwasm_1_3,cosmwasm_1_4 --force-clean --engine llvm --out Html --output-dir "$WORKING_DIRECTORY/target/tov"
 
 # display final message
 echo ""
