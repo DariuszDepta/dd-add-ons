@@ -4,6 +4,195 @@ silent: true
 
 tasks:
 
+  build:
+    cmds:
+      - task: build-contracts-cw1-subkeys
+      - task: build-contracts-cw1-whitelist
+      - task: build-contracts-cw3-fixed-multisig
+      - task: build-contracts-cw3-flex-multisig
+      - task: build-contracts-cw4-group
+      - task: build-contracts-cw4-stake
+      - task: build-contracts-cw20-base
+      - task: build-contracts-cw20-ics20
+      - task: build-packages-cw1
+      - task: build-packages-cw3
+      - task: build-packages-cw4
+      - task: build-packages-cw20
+
+  build-contracts-cw1-subkeys:
+    cmds:
+      - cmd: cd contracts/cw1-subkeys && cargo build && cd ../..
+
+  build-contracts-cw1-whitelist:
+    cmds:
+      - cmd: cd contracts/cw1-whitelist && cargo build && cd ../..
+
+  build-contracts-cw3-fixed-multisig:
+    cmds:
+      - cmd: cd contracts/cw3-fixed-multisig && cargo build && cd ../..
+
+  build-contracts-cw3-flex-multisig:
+    cmds:
+      - cmd: cd contracts/cw3-flex-multisig && cargo build && cd ../..
+
+  build-contracts-cw4-group:
+    cmds:
+      - cmd: cd contracts/cw4-group && cargo build && cd ../..
+
+  build-contracts-cw4-stake:
+    cmds:
+      - cmd: cd contracts/cw4-stake && cargo build && cd ../..
+
+  build-contracts-cw20-base:
+    cmds:
+      - cmd: cd contracts/cw20-base && cargo build && cd ../..
+
+  build-contracts-cw20-ics20:
+    cmds:
+      - cmd: cd contracts/cw20-ics20 && cargo build && cd ../..
+
+  build-packages-cw1:
+    cmds:
+      - cmd: cd packages/cw1 && cargo build && cd ../..
+
+  build-packages-cw3:
+    cmds:
+      - cmd: cd packages/cw3 && cargo build && cd ../..
+
+  build-packages-cw4:
+    cmds:
+      - cmd: cd packages/cw4 && cargo build && cd ../..
+
+  build-packages-cw20:
+    cmds:
+      - cmd: cd packages/cw20 && cargo build && cd ../..
+
+  wasm:
+    cmds:
+      - task: wasm-contracts-cw1-subkeys
+      - task: wasm-contracts-cw1-whitelist
+      - task: wasm-contracts-cw3-fixed-multisig
+      - task: wasm-contracts-cw3-flex-multisig
+      - task: wasm-contracts-cw4-group
+      - task: wasm-contracts-cw4-stake
+      - task: wasm-contracts-cw20-base
+      - task: wasm-contracts-cw20-ics20
+      - task: wasm-packages-cw1
+      - task: wasm-packages-cw3
+      - task: wasm-packages-cw4
+      - task: wasm-packages-cw20
+
+  wasm-contracts-cw1-subkeys:
+    cmds:
+      - cmd: cd contracts/cw1-subkeys && cargo wasm && cd ../..
+
+  wasm-contracts-cw1-whitelist:
+    cmds:
+      - cmd: cd contracts/cw1-whitelist && cargo wasm && cd ../..
+
+  wasm-contracts-cw3-fixed-multisig:
+    cmds:
+      - cmd: cd contracts/cw3-fixed-multisig && cargo wasm && cd ../..
+
+  wasm-contracts-cw3-flex-multisig:
+    cmds:
+      - cmd: cd contracts/cw3-flex-multisig && cargo wasm && cd ../..
+
+  wasm-contracts-cw4-group:
+    cmds:
+      - cmd: cd contracts/cw4-group && cargo wasm && cd ../..
+
+  wasm-contracts-cw4-stake:
+    cmds:
+      - cmd: cd contracts/cw4-stake && cargo wasm && cd ../..
+
+  wasm-contracts-cw20-base:
+    cmds:
+      - cmd: cd contracts/cw20-base && cargo wasm && cd ../..
+
+  wasm-contracts-cw20-ics20:
+    cmds:
+      - cmd: cd contracts/cw20-ics20 && cargo wasm && cd ../..
+
+  wasm-packages-cw1:
+    cmds:
+      - cmd: cd packages/cw1 && cargo wasm && cd ../..
+
+  wasm-packages-cw3:
+    cmds:
+      - cmd: cd packages/cw3 && cargo wasm && cd ../..
+
+  wasm-packages-cw4:
+    cmds:
+      - cmd: cd packages/cw4 && cargo wasm && cd ../..
+
+  wasm-packages-cw20:
+    cmds:
+      - cmd: cd packages/cw20 && cargo wasm && cd ../..
+
+  test:
+    cmds:
+      - task: test-contracts-cw1-subkeys
+      - task: test-contracts-cw1-whitelist
+      - task: test-contracts-cw3-fixed-multisig
+      - task: test-contracts-cw3-flex-multisig
+      - task: test-contracts-cw4-group
+      - task: test-contracts-cw4-stake
+      - task: test-contracts-cw20-base
+      - task: test-contracts-cw20-ics20
+      - task: test-packages-cw1
+      - task: test-packages-cw3
+      - task: test-packages-cw4
+      - task: test-packages-cw20
+
+  test-contracts-cw1-subkeys:
+    cmds:
+      - cmd: cd contracts/cw1-subkeys && cargo test && cd ../..
+
+  test-contracts-cw1-whitelist:
+    cmds:
+      - cmd: cd contracts/cw1-whitelist && cargo test && cd ../..
+
+  test-contracts-cw3-fixed-multisig:
+    cmds:
+      - cmd: cd contracts/cw3-fixed-multisig && cargo test && cd ../..
+
+  test-contracts-cw3-flex-multisig:
+    cmds:
+      - cmd: cd contracts/cw3-flex-multisig && cargo test && cd ../..
+
+  test-contracts-cw4-group:
+    cmds:
+      - cmd: cd contracts/cw4-group && cargo test && cd ../..
+
+  test-contracts-cw4-stake:
+    cmds:
+      - cmd: cd contracts/cw4-stake && cargo test && cd ../..
+
+  test-contracts-cw20-base:
+    cmds:
+      - cmd: cd contracts/cw20-base && cargo test && cd ../..
+
+  test-contracts-cw20-ics20:
+    cmds:
+      - cmd: cd contracts/cw20-ics20 && cargo test && cd ../..
+
+  test-packages-cw1:
+    cmds:
+      - cmd: cd packages/cw1 && cargo test && cd ../..
+
+  test-packages-cw3:
+    cmds:
+      - cmd: cd packages/cw3 && cargo test && cd ../..
+
+  test-packages-cw4:
+    cmds:
+      - cmd: cd packages/cw4 && cargo test && cd ../..
+
+  test-packages-cw20:
+    cmds:
+      - cmd: cd packages/cw20 && cargo test && cd ../..
+
   tov:
     desc: Runs code coverage using tarpaulin
     cmds:
