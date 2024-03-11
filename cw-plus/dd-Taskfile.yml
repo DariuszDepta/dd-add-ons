@@ -4,6 +4,10 @@ silent: true
 
 tasks:
 
+  clean:
+    cmds:
+      - cmd: cargo clean
+
   build:
     cmds:
       - task: build-contracts-cw1-subkeys
@@ -66,6 +70,69 @@ tasks:
   build-packages-cw20:
     cmds:
       - cmd: cd packages/cw20 && cargo build && cd ../..
+
+  clippy:
+    cmds:
+      - task: clippy-contracts-cw1-subkeys
+      - task: clippy-contracts-cw1-whitelist
+      - task: clippy-contracts-cw3-fixed-multisig
+      - task: clippy-contracts-cw3-flex-multisig
+      - task: clippy-contracts-cw4-group
+      - task: clippy-contracts-cw4-stake
+      - task: clippy-contracts-cw20-base
+      - task: clippy-contracts-cw20-ics20
+      - task: clippy-packages-cw1
+      - task: clippy-packages-cw3
+      - task: clippy-packages-cw4
+      - task: clippy-packages-cw20
+
+  clippy-contracts-cw1-subkeys:
+    cmds:
+      - cmd: cd contracts/cw1-subkeys && cargo clippy && cd ../..
+
+  clippy-contracts-cw1-whitelist:
+    cmds:
+      - cmd: cd contracts/cw1-whitelist && cargo clippy && cd ../..
+
+  clippy-contracts-cw3-fixed-multisig:
+    cmds:
+      - cmd: cd contracts/cw3-fixed-multisig && cargo clippy && cd ../..
+
+  clippy-contracts-cw3-flex-multisig:
+    cmds:
+      - cmd: cd contracts/cw3-flex-multisig && cargo clippy && cd ../..
+
+  clippy-contracts-cw4-group:
+    cmds:
+      - cmd: cd contracts/cw4-group && cargo clippy && cd ../..
+
+  clippy-contracts-cw4-stake:
+    cmds:
+      - cmd: cd contracts/cw4-stake && cargo clippy && cd ../..
+
+  clippy-contracts-cw20-base:
+    cmds:
+      - cmd: cd contracts/cw20-base && cargo clippy && cd ../..
+
+  clippy-contracts-cw20-ics20:
+    cmds:
+      - cmd: cd contracts/cw20-ics20 && cargo clippy && cd ../..
+
+  clippy-packages-cw1:
+    cmds:
+      - cmd: cd packages/cw1 && cargo clippy && cd ../..
+
+  clippy-packages-cw3:
+    cmds:
+      - cmd: cd packages/cw3 && cargo clippy && cd ../..
+
+  clippy-packages-cw4:
+    cmds:
+      - cmd: cd packages/cw4 && cargo clippy && cd ../..
+
+  clippy-packages-cw20:
+    cmds:
+      - cmd: cd packages/cw20 && cargo clippy && cd ../..
 
   wasm:
     cmds:
