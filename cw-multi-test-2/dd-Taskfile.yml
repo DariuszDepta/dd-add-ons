@@ -4,6 +4,10 @@ silent: true
 
 tasks:
 
+  all:
+    cmds:
+      - cmd: t clean && t build && t clippy && t test
+
   before-commit:
     desc: Run this before committing any changes
     cmds:
