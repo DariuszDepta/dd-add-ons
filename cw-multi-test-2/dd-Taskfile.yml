@@ -56,7 +56,7 @@ tasks:
     cmds:
       - task: clippy-all
       - task: clippy-default
-      - task: clippy-rust-1-65
+      - task: clippy-rust-1-70
 
   clippy-all:
     desc: Runs clippy with all features enabled
@@ -70,10 +70,10 @@ tasks:
       - cmd: cargo +stable clippy --all-targets
       - cmd: cargo +nightly clippy --all-targets
 
-  clippy-rust-1-65:
-    desc: Runs clippy with all features and Rust version 1.65.0
+  clippy-rust-1-70:
+    desc: Runs clippy with all features and Rust version 1.70.0
     cmds:
-      - cmd: cargo +1.65.0-x86_64-unknown-linux-gnu clippy --all-targets --all-features
+      - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu clippy --all-targets --all-features
 
   cov:
     desc: Runs code coverage using grcov
