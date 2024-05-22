@@ -4,9 +4,13 @@ silent: true
 
 tasks:
 
-  all:
+  all-all:
     cmds:
       - cmd: t clean && t build && t clippy && t test
+
+  all:
+    cmds:
+      - cmd: t clean && t build-all && t clippy-all && t test-all
 
   before-commit:
     desc: Run this before committing any changes
@@ -20,6 +24,13 @@ tasks:
     cmds:
       - task: build-all
       - task: build-default
+      - task: build-no-default
+      - task: build-1-1
+      - task: build-1-2
+      - task: build-1-3
+      - task: build-1-4
+      - task: build-2-0
+      - task: build-stargate
       - task: build-min
       - task: build-max
 
@@ -32,6 +43,41 @@ tasks:
     desc: Builds in debug mode with default features enabled
     cmds:
       - cmd: cargo +stable build
+
+  build-no-default:
+    desc: Builds in debug mode without default features
+    cmds:
+      - cmd: cargo +stable build --no-default-features
+
+  build-1-1:
+    desc: Builds the library in debug mode with "cosmwasm_1_1" feature enabled
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_1_1
+
+  build-1-2:
+    desc: Builds the library in debug mode with "cosmwasm_1_2" feature enabled
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_1_2
+
+  build-1-3:
+    desc: Builds the library in debug mode with "cosmwasm_1_3" feature enabled
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_1_3
+
+  build-1-4:
+    desc: Builds the library in debug mode with "cosmwasm_1_4" feature enabled
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_1_4
+
+  build-2-0:
+    desc: Builds the library in debug mode with "cosmwasm_2_0" feature enabled
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_2_0
+
+  build-stargate:
+    desc: Builds the library in debug mode with "stargate" feature enabled
+    cmds:
+      - cmd: cargo +stable build --features stargate
 
   build-min:
     desc: Equivalent of the build_minimal job in Circle CI
@@ -56,6 +102,13 @@ tasks:
     cmds:
       - task: clippy-all
       - task: clippy-default
+      - task: clippy-no-default
+      - task: clippy-1-1
+      - task: clippy-1-2
+      - task: clippy-1-3
+      - task: clippy-1-4
+      - task: clippy-2-0
+      - task: clippy-stargate
       - task: clippy-rust-1-70
 
   clippy-all:
@@ -69,6 +122,42 @@ tasks:
     cmds:
       - cmd: cargo +stable clippy --all-targets
       - cmd: cargo +nightly clippy --all-targets
+
+  clippy-no-default:
+    desc: Runs clippy without default features
+    cmds:
+      - cmd: cargo +stable clippy --no-default-features --all-targets
+      - cmd: cargo +nightly clippy --no-default-features --all-targets
+
+  clippy-1-1:
+    desc: Runs clippy with "cosmwasm_1_1" feature enabled
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_1
+
+  clippy-1-2:
+    desc: Runs clippy with "cosmwasm_1_2" feature enabled
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_2
+
+  clippy-1-3:
+    desc: Runs clippy with "cosmwasm_1_3" feature enabled
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_3
+
+  clippy-1-4:
+    desc: Runs clippy with "cosmwasm_1_4" feature enabled
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_4
+
+  clippy-2-0:
+    desc: Runs clippy with "cosmwasm_2_0" feature enabled
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_2_0
+
+  clippy-stargate:
+    desc: Runs clippy with "stargate" feature enabled
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features stargate
 
   clippy-rust-1-70:
     desc: Runs clippy with all features and Rust version 1.70.0
@@ -115,6 +204,13 @@ tasks:
     cmds:
       - task: test-all
       - task: test-default
+      - task: test-no-default
+      - task: test-1-1
+      - task: test-1-2
+      - task: test-1-3
+      - task: test-1-4
+      - task: test-2-0
+      - task: test-stargate
       - task: test-min
       - task: test-max
 
@@ -127,6 +223,41 @@ tasks:
     desc: Runs all tests in debug mode with default features enabled
     cmds:
       - cmd: cargo +stable test
+
+  test-no-default:
+    desc: Runs all tests in debug mode without default features
+    cmds:
+      - cmd: cargo +stable test --no-default-features
+
+  test-1-1:
+    desc: Runs all tests in debug mode with "cosmwasm_1_1" feature enabled
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_1_1
+
+  test-1-2:
+    desc: Runs all tests in debug mode with "cosmwasm_1_2" feature enabled
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_1_2
+
+  test-1-3:
+    desc: Runs all tests in debug mode with "cosmwasm_1_3" feature enabled
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_1_3
+
+  test-1-4:
+    desc: Runs all tests in debug mode with "cosmwasm_1_4" feature enabled
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_1_4
+
+  test-2-0:
+    desc: Runs all tests in debug mode with "cosmwasm_2_0" feature enabled
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_2_0
+
+  test-stargate:
+    desc: Runs all tests in debug mode with "stargate" feature enabled
+    cmds:
+      - cmd: cargo +stable test --features stargate
 
   test-min:
     desc: Runs tests with minimal version like in Circe CI
