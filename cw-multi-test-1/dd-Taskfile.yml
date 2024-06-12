@@ -4,9 +4,13 @@ silent: true
 
 tasks:
 
-  all:
+  aall:
     cmds:
       - cmd: t clean && t build && t clippy && t test
+
+  all:
+    cmds:
+      - cmd: t clean && t build-all && t clippy-all && t test-all
 
   before-commit:
     desc: Run this before committing changes
@@ -24,6 +28,7 @@ tasks:
       - task: build12
       - task: build13
       - task: build14
+      - task: build-rust-1-70
       - task: build-min
       - task: build-max
 
@@ -57,6 +62,11 @@ tasks:
     cmds:
       - cmd: cargo +stable build --features cosmwasm_1_4
 
+  build-rust-1-70:
+    desc: Builds the library in debug mode with all features and Rust version 1.70.0
+    cmds:
+      - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu build --all-targets --all-features
+
   build-min:
     desc: Circle CI equivalent of build_minimal job
     cmds:
@@ -84,7 +94,7 @@ tasks:
       - task: clippy12
       - task: clippy13
       - task: clippy14
-      - task: clippy-rust-1-65
+      - task: clippy-rust-1-70
 
   clippy-all:
     desc: Runs clippy with all features enabled
@@ -116,10 +126,10 @@ tasks:
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_1_4
 
-  clippy-rust-1-65:
-    desc: Runs clippy with all features and Rust version 1.65.0
+  clippy-rust-1-70:
+    desc: Runs clippy with all features and Rust version 1.70.0
     cmds:
-      - cmd: cargo +1.65.0-x86_64-unknown-linux-gnu clippy --all-targets --all-features
+      - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu clippy --all-targets --all-features
 
   cov:
     desc: Runs code coverage using grcov
@@ -165,6 +175,7 @@ tasks:
       - task: test12
       - task: test13
       - task: test14
+      - task: test-rust-1-70
       - task: test-min
       - task: test-max
 
@@ -197,6 +208,11 @@ tasks:
     desc: Runs all tests in debug mode with "cosmwasm_1_4" feature enabled
     cmds:
       - cmd: cargo +stable test --features cosmwasm_1_4
+
+  test-rust-1-70:
+    desc: Runs all tests in debug mode with all features and Rust version 1.70.0
+    cmds:
+      - cmd: cargo +1.70.0-x86_64-unknown-linux-gnu test --all-targets --all-features
 
   test-min:
     desc: Runs tests with minimal version
