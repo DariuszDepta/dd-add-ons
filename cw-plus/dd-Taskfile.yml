@@ -22,6 +22,7 @@ tasks:
       - task: build-packages-cw3
       - task: build-packages-cw4
       - task: build-packages-cw20
+      - task: build-packages-easy-addr
 
   build-contracts-cw1-subkeys:
     cmds:
@@ -71,6 +72,10 @@ tasks:
     cmds:
       - cmd: cd packages/cw20 && cargo build && cd ../..
 
+  build-packages-easy-addr:
+    cmds:
+      - cmd: cd packages/easy-addr && cargo build && cd ../..
+
   clippy:
     cmds:
       - task: clippy-contracts-cw1-subkeys
@@ -85,6 +90,7 @@ tasks:
       - task: clippy-packages-cw3
       - task: clippy-packages-cw4
       - task: clippy-packages-cw20
+      - task: clippy-packages-easy-addr
 
   clippy-contracts-cw1-subkeys:
     cmds:
@@ -92,47 +98,51 @@ tasks:
 
   clippy-contracts-cw1-whitelist:
     cmds:
-      - cmd: cd contracts/cw1-whitelist && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd contracts/cw1-whitelist && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-contracts-cw3-fixed-multisig:
     cmds:
-      - cmd: cd contracts/cw3-fixed-multisig && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd contracts/cw3-fixed-multisig && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-contracts-cw3-flex-multisig:
     cmds:
-      - cmd: cd contracts/cw3-flex-multisig && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd contracts/cw3-flex-multisig && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-contracts-cw4-group:
     cmds:
-      - cmd: cd contracts/cw4-group && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd contracts/cw4-group && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-contracts-cw4-stake:
     cmds:
-      - cmd: cd contracts/cw4-stake && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd contracts/cw4-stake && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-contracts-cw20-base:
     cmds:
-      - cmd: cd contracts/cw20-base && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd contracts/cw20-base && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-contracts-cw20-ics20:
     cmds:
-      - cmd: cd contracts/cw20-ics20 && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd contracts/cw20-ics20 && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-packages-cw1:
     cmds:
-      - cmd: cd packages/cw1 && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd packages/cw1 && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-packages-cw3:
     cmds:
-      - cmd: cd packages/cw3 && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd packages/cw3 && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-packages-cw4:
     cmds:
-      - cmd: cd packages/cw4 && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd packages/cw4 && cargo clippy --all-targets -- -D warnings && cd ../..
 
   clippy-packages-cw20:
     cmds:
-      - cmd: cd packages/cw20 && cargo clippy --all-targets -- -D warnings  && cd ../..
+      - cmd: cd packages/cw20 && cargo clippy --all-targets -- -D warnings && cd ../..
+
+  clippy-packages-easy-addr:
+    cmds:
+      - cmd: cd packages/easy-addr && cargo clippy --all-targets -- -D warnings && cd ../..
 
   wasm:
     cmds:
@@ -211,54 +221,59 @@ tasks:
       - task: test-packages-cw3
       - task: test-packages-cw4
       - task: test-packages-cw20
+      - task: test-packages-easy-addr
 
   test-contracts-cw1-subkeys:
     cmds:
-      - cmd: cd contracts/cw1-subkeys && cargo test --locked && cd ../..
+      - cmd: cd contracts/cw1-subkeys && cargo test && cd ../..
 
   test-contracts-cw1-whitelist:
     cmds:
-      - cmd: cd contracts/cw1-whitelist && cargo test --locked && cd ../..
+      - cmd: cd contracts/cw1-whitelist && cargo test && cd ../..
 
   test-contracts-cw3-fixed-multisig:
     cmds:
-      - cmd: cd contracts/cw3-fixed-multisig && cargo test --locked && cd ../..
+      - cmd: cd contracts/cw3-fixed-multisig && cargo test && cd ../..
 
   test-contracts-cw3-flex-multisig:
     cmds:
-      - cmd: cd contracts/cw3-flex-multisig && cargo test --locked && cd ../..
+      - cmd: cd contracts/cw3-flex-multisig && cargo test && cd ../..
 
   test-contracts-cw4-group:
     cmds:
-      - cmd: cd contracts/cw4-group && cargo test --locked && cd ../..
+      - cmd: cd contracts/cw4-group && cargo test && cd ../..
 
   test-contracts-cw4-stake:
     cmds:
-      - cmd: cd contracts/cw4-stake && cargo test --locked && cd ../..
+      - cmd: cd contracts/cw4-stake && cargo test && cd ../..
 
   test-contracts-cw20-base:
     cmds:
-      - cmd: cd contracts/cw20-base && cargo test --locked && cd ../..
+      - cmd: cd contracts/cw20-base && cargo test && cd ../..
 
   test-contracts-cw20-ics20:
     cmds:
-      - cmd: cd contracts/cw20-ics20 && cargo test --locked && cd ../..
+      - cmd: cd contracts/cw20-ics20 && cargo test && cd ../..
 
   test-packages-cw1:
     cmds:
-      - cmd: cd packages/cw1 && cargo test --locked && cd ../..
+      - cmd: cd packages/cw1 && cargo test && cd ../..
 
   test-packages-cw3:
     cmds:
-      - cmd: cd packages/cw3 && cargo test --locked && cd ../..
+      - cmd: cd packages/cw3 && cargo test && cd ../..
 
   test-packages-cw4:
     cmds:
-      - cmd: cd packages/cw4 && cargo test --locked && cd ../..
+      - cmd: cd packages/cw4 && cargo test && cd ../..
 
   test-packages-cw20:
     cmds:
-      - cmd: cd packages/cw20 && cargo test --locked && cd ../..
+      - cmd: cd packages/cw20 && cargo test && cd ../..
+
+  test-packages-easy-addr:
+    cmds:
+      - cmd: cd packages/easy-addr && cargo test && cd ../..
 
   tov:
     desc: Runs code coverage using tarpaulin
