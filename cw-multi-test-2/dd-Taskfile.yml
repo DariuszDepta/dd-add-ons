@@ -88,8 +88,10 @@ tasks:
   build-min:
     desc: Equivalent of the build_minimal job in Circle CI
     cmds:
+      - cmd: cargo clean
       - cmd: rm -rf Cargo.lock
-      - cmd: cargo +nightly build -Zminimal-versions --all-features
+      - cmd: cargo update -p ahash && cargo update -p num-bigint
+      - cmd: RUSTC_BOOTSTRAP=1 cargo +stable build -Zminimal-versions --all-features
       - cmd: rm -rf Cargo.lock
       - cmd: cargo +stable build --all-features
 
@@ -287,7 +289,8 @@ tasks:
     desc: Runs tests with minimal version like in Circle CI
     cmds:
       - cmd: rm -rf Cargo.lock
-      - cmd: cargo +nightly test -Zminimal-versions --all-features
+      - cmd: cargo update -p ahash && cargo update -p num-bigint
+      - cmd: RUSTC_BOOTSTRAP=1 cargo +stable test -Zminimal-versions --all-features
       - cmd: rm -rf Cargo.lock
       - cmd: cargo +stable test --all-features
 
