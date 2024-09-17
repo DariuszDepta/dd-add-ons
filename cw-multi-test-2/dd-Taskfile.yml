@@ -7,6 +7,7 @@ tasks:
   aall:
     cmds:
       - cmd: t clean && t build && t clippy && t test
+      - task: before-commit
 
   all:
     cmds:
@@ -30,6 +31,7 @@ tasks:
       - task: build-1-3
       - task: build-1-4
       - task: build-2-0
+      - task: build-2-1
       - task: build-stargate
       - task: build-staking
       - task: build-min
@@ -75,6 +77,11 @@ tasks:
     cmds:
       - cmd: cargo +stable build --features cosmwasm_2_0
 
+  build-2-1:
+    desc: Builds the library in debug mode with "cosmwasm_2_1" feature enabled
+    cmds:
+      - cmd: cargo +stable build --features cosmwasm_2_1
+
   build-stargate:
     desc: Builds the library in debug mode with "stargate" feature enabled
     cmds:
@@ -116,6 +123,7 @@ tasks:
       - task: clippy-1-3
       - task: clippy-1-4
       - task: clippy-2-0
+      - task: clippy-2-1
       - task: clippy-stargate
       - task: clippy-staking
       - task: clippy-rust-1-75-all
@@ -163,6 +171,11 @@ tasks:
     desc: Runs clippy with "cosmwasm_2_0" feature enabled
     cmds:
       - cmd: cargo +nightly clippy --all-targets --features cosmwasm_2_0
+
+  clippy-2-1:
+    desc: Runs clippy with "cosmwasm_2_1" feature enabled
+    cmds:
+      - cmd: cargo +nightly clippy --all-targets --features cosmwasm_2_1
 
   clippy-stargate:
     desc: Runs clippy with "stargate" feature enabled
@@ -230,6 +243,7 @@ tasks:
       - task: test-1-3
       - task: test-1-4
       - task: test-2-0
+      - task: test-2-1
       - task: test-stargate
       - task: test-staking
       - task: test-min
@@ -274,6 +288,11 @@ tasks:
     desc: Runs all tests in debug mode with "cosmwasm_2_0" feature enabled
     cmds:
       - cmd: cargo +stable test --features cosmwasm_2_0
+
+  test-2-1:
+    desc: Runs all tests in debug mode with "cosmwasm_2_1" feature enabled
+    cmds:
+      - cmd: cargo +stable test --features cosmwasm_2_1
 
   test-stargate:
     desc: Runs all tests in debug mode with "stargate" feature enabled
