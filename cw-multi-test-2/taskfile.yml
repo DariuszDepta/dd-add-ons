@@ -200,12 +200,12 @@ tasks:
   cov:
     desc: Runs code coverage using grcov
     cmds:
-      - cmd: ./coverage.sh
+      - cmd: ./Coverage.sh
 
   tov:
     desc: Runs code coverage using tarpaulin
     cmds:
-      - cmd: ./tarpaulage.sh
+      - cmd: ./Tarpaulage.sh
 
   doc:
     desc: Generates documentation with all features
