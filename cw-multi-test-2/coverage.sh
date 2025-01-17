@@ -21,7 +21,8 @@ cargo clean
 # set instrumenting variables
 export CARGO_INCREMENTAL=0
 export RUSTDOCFLAGS="-Cpanic=unwind"
-export RUSTFLAGS="-Zprofile -Ccodegen-units=1 -Copt-level=0 -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=unwind"
+export RUSTFLAGS="-Cinstrument-coverage -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code=off -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=unwind"
+export LLVM_PROFILE_FILE="$WORKING_DIRECTORY/target/profraw/dsntk-%p-%m.profraw"
 
 # run all tests
 cargo +nightly test --all-features
@@ -31,13 +32,18 @@ mkdir ./target/lcov
 mkdir ./target/coverage
 
 # generate coverage info
-grcov . --llvm -s . -t lcov --ignore-not-existing \
-     --excl-line='\s+\)$|\s+\}$|\s+\);$|\s+\}\)$|\s+\)\?\;$|\s+\};$|\s+\},$|\s+\)\?\)$' \
-     --ignore "*cargo*" --ignore "*tests*" \
+grcov . \
+     --llvm \
+     -s . \
+     --binary-path ./target/debug/ \
+     -t lcov \
+     --branch \
+     --ignore-not-existing \
+     --ignore "*cargo*" --ignore "*tests*" --ignore "*target*" \
      -o ./target/lcov/lcov.info
 
 # generate coverage report in HTML format
-genhtml -t "$CARGO_NAME v$CARGO_VERSION" -q --ignore-errors unmapped,unmapped -o ./target/coverage ./target/lcov/lcov.info
+genhtml -t "$CARGO_NAME v$CARGO_VERSION" -q -o ./target/coverage ./target/lcov/lcov.info
 
 # display final message
 echo ""
