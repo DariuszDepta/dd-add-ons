@@ -36,6 +36,7 @@ tasks:
       - task: build-staking
       - task: build-min
       - task: build-max
+      - task: build-1-78
 
   build-all:
     desc: Builds in debug mode with all features enabled
@@ -106,6 +107,11 @@ tasks:
     desc: Equivalent of the build_maximal job in Circle CI
     cmds:
       - cmd: cargo build --locked --all-features
+
+  build-1-78:
+    desc: Builds in debug mode with all features enabled and rust version 1.78
+    cmds:
+      - cmd: cargo +1.78.0-x86_64-unknown-linux-gnu build --all-features
 
   clean:
     desc: Removes all target artifacts
