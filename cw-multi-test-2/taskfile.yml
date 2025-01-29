@@ -151,19 +151,19 @@ tasks:
   clippy-all:
     desc: Runs clippy with all features enabled
     cmds:
-      - cmd: cargo +stable clippy --all-targets --all-features
+      #      - cmd: cargo +stable clippy --all-targets --all-features
       - cmd: cargo +nightly clippy --all-targets --all-features
 
   clippy-default:
     desc: Runs clippy with default features enabled
     cmds:
-      - cmd: cargo +stable clippy --all-targets
+      #      - cmd: cargo +stable clippy --all-targets
       - cmd: cargo +nightly clippy --all-targets
 
   clippy-no-default:
     desc: Runs clippy without default features
     cmds:
-      - cmd: cargo +stable clippy --no-default-features --all-targets
+      #      - cmd: cargo +stable clippy --no-default-features --all-targets
       - cmd: cargo +nightly clippy --no-default-features --all-targets
 
   clippy-1-1:
@@ -222,9 +222,10 @@ tasks:
       - cmd: cargo +1.78.0-x86_64-unknown-linux-gnu clippy --all-targets -- -D warnings
 
   cov:
-    desc: Runs code coverage using grcov
+    desc: Generates code coverage report
     cmds:
-      - cmd: ./Coverage.sh
+      - cmd: cargo +nightly llvm-cov --no-cfg-coverage --no-cfg-coverage-nightly --branch --html
+      - cmd: echo -e "\n\e[1;32mOpen coverage report\x3A\e[0m file:///$(pwd)/target/llvm-cov/html/index.html\n"
 
   tov:
     desc: Runs code coverage using tarpaulin
